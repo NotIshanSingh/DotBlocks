@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Polkadot Smart-Contract Block Editor</title>
+  <!-- Load Blockly core -->
+  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+  <style>
+    :root {
+      --polkadot-pink: #FF2670;
+      --polkadot-blue: #7916F3;
+      --polkadot-teal: #00c2c2;
+      --scratch-bg: #FFFFFF;
+      --scratch-panel: #E6E6E6;
+      --dark-text: #333333;
+    }
+    html, body { height: 100%; margin: 0; padding: 0; }
+    body {
+      display: flex;
+      flex-direction: column;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: var(--scratch-bg);
+    }
+    #header {
+      background: var(--polkadot-blue);
+      color: white;
+      padding: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    #header h1 { margin: 0; font-size: 1.5rem; font-weight: 700; }
+    #headerButtons button {
+      padding: 0.5rem 1rem;
+      border: 2px solid white;
+      border-radius: 20px;
+      background: transparent;
+      color: white;
+      font-weight: bold;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    #headerButtons button:hover { background: rgba(255,255,255,0.2); transform: scale(1.05); }
+
+    .circle-button {
+      position: absolute;
+      top: 1rem;
+      right: calc(300px + 1rem);
+      width: 2.5rem;
+      height: 2.5rem;
+      border: none;
+      border-radius: 50%;
+      background: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    .circle-button:hover { transform: scale(1.1); }
+
+    .idea-popup {
+      position: absolute;
+      top: 4rem;
+      right: calc(300px + 1rem);
+      width: 260px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 1rem;
+      z-index: 1000;
+    }
+    .hidden { display: none; }
+    .idea-popup p { margin: 0 0 0.5rem 0; }
+
+    #main {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+    #blocklyDiv { flex: 1; height: 100%; }
+    #sidePanel {
+      width: 300px;
+      background: var(--scratch-panel);
+      border-left: 1px solid #ccc;
+      display: flex;
+      flex-direction: column;
+    }
+    #codeOutputHeader {
+      padding: 8px 10px;
+      background: #f0f0f0;
+      border-bottom: 1px solid #ddd;
+      font-weight: bold;
+    }
+    #codeOutput {
+      flex: 1;
+      padding: 1rem;
+      background: white;
+      overflow: auto;
+      white-space: pre-wrap;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      color: var(--dark-text);
+      border-bottom: 1px solid #ddd;
+    }
+    #controlButtons { padding: 10px; display: flex; flex-direction: column; gap: 10px; }
+    .scratch-button {
+      border: none;
+      border-radius: 4px;
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+      transition: transform 0.15s;
+    }
+    .scratch-button:hover { transform: translateY(-2px); }
+    .scratch-button:active { transform: translateY(1px); box-shadow: 0 1px 0 rgba(0,0,0,0.2); }
+    #compileBtn { background-color: var(--polkadot-pink); }
+    #deployBtn  { background-color: var(--polkadot-teal); }
+
+    #feedbackArea {
+      flex: 1;
+      padding: 0.5rem;
+      background: #f9f9f9;
+      border-top: 1px solid #ddd;
+      overflow: auto;
+      font-size: 0.8rem;
+      color: var(--dark-text);
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <h1>Polkadot Block Editor</h1>
+    <div id="headerButtons">
+      <button id="newBtn">New</button>
+      <button id="openBtn">Open</button>
+      <button id="saveBtn">Save</button>
+    </div>
+  </div>
+
+  <div id="main">
+    <div id="blocklyDiv"></div>
+    <button id="ideaBtn" class="circle-button">🎮</button>
+    <div id="ideaPopup" class="idea-popup hidden">
+      <p>🔮 Idea: Mint 1 EasyA coin to whoever calls the contract</p>
+      <div id="popupButtons">
+        <button id="acceptBtn">Accept</button>
+        <button id="nextBtn">Next</button>
+      </div>
+    </div>
+    <div id="sidePanel">
+      <div id="codeOutputHeader">Output</div>
+      <pre id="codeOutput"></pre>
+      <div id="controlButtons">
+        <button id="compileBtn" class="scratch-button">Compile</button>
+        <button id="deployBtn" class="scratch-button">Deploy</button>
+      </div>
+      <div id="feedbackArea">📝 Review feedback will appear here.</div>
+    </div>
+  </div>
+
+  <script src="block.js"></script>
+  <script>
+    // Initialize Blockly
+    const workspace = Blockly.inject('blocklyDiv', {
+      toolbox: document.getElementById('toolbox'),
+      trashcan: true,
+      theme: Blockly.Themes.Zelos,
+      grid: { spacing: 20, length: 3, colour: '#ccc', snap: true },
+      zoom: { controls: true, wheel: true },
+      scrollbars: true
+    });
+
+    // Auto-review enabled after game-controller click
+    let autoReviewEnabled = false;
+    const reviewDebounceMs = 500;
+    let reviewTimer = null;
+
+    workspace.addChangeListener(() => {
+      // Update pseudo-English preview
+      const lines = [];
+      workspace.getTopBlocks(true).forEach(block => traverseBlock(block, lines));
+      const code = lines.join('\n');
+      document.getElementById('codeOutput').textContent = code;
+
+      if (!autoReviewEnabled) return;
+      clearTimeout(reviewTimer);
+      reviewTimer = setTimeout(() => {
+        fetch('http://127.0.0.1:5000/review', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: code })
+        })
+        .then(res => res.ok ? res.json() : Promise.reject(`Status ${res.status}`))
+        .then(data => {
+          document.getElementById('feedbackArea').textContent = data.message;
+        })
+        .catch(err => {
+          document.getElementById('feedbackArea').textContent = '❌ Review error: ' + err;
+        });
+      }, reviewDebounceMs);
+    });
+
+    // Enable auto-review when game-controller button clicked
+    document.getElementById('ideaBtn').addEventListener('click', () => {
+      autoReviewEnabled = true;
+      document.getElementById('ideaPopup').classList.toggle('hidden');
+    });
+
+    // Compile & Deploy handlers
+    document.getElementById('compileBtn').addEventListener('click', () => {
+      const msg = document.getElementById('codeOutput').textContent.trim();
+      fetch('http://127.0.0.1:5000/compile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg })
+      })
+      .then(res => res.ok ? res.json() : Promise.reject(`Status ${res.status}`))
+      .then(data => {
+        document.getElementById('codeOutput').textContent = data.message;
+      })
+      .catch(err => {
+        document.getElementById('codeOutput').textContent += '\n\nError: ' + err;
+      });
+    });
+
+    document.getElementById('deployBtn').addEventListener('click', () => {
+      fetch('http://127.0.0.1:5000/deploy', { method: 'POST' })
+      .then(res => res.ok ? res.json() : Promise.reject(`Status ${res.status}`))
+      .then(data => {
+        document.getElementById('codeOutput').textContent += '\n\n' + data.message;
+      })
+      .catch(err => {
+        document.getElementById('codeOutput').textContent += '\n\nDeploy error: ' + err;
+      });
+    });
+
+    // Header and popup management
+    document.getElementById('acceptBtn').addEventListener('click', () => {
+      document.getElementById('ideaPopup').classList.add('hidden');
+    });
+    document.getElementById('nextBtn').addEventListener('click', () => {});
+    document.getElementById('newBtn').addEventListener('click', () => {
+      if (confirm('Create new project? Unsaved changes will be lost.')) workspace.clear();
+    });
+    document.getElementById('openBtn').addEventListener('click', () => alert('Open not implemented'));
+    document.getElementById('saveBtn').addEventListener('click', () => alert('Save not implemented'));
+  </script>
+</body>
+</html>
