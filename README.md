@@ -59,9 +59,10 @@ DotBlocks is a web-based smart contract builder engineered for the Polkadot ecos
 
 ### How DotBlocks Works:
 1. Users assemble their logic using pre-built block categories: Events, Variables, Control Flow, Token Ops, etc.
-2. DotBlocks’ parser dynamically generates clean, human-readable Ink! smart contract code.
-3. Code is automatically compiled via `cargo-contract` and ready for deployment.
-4. (Optional) Users can sign transactions and deploy directly through the DotBlocks interface using the Polkadot-JS wallet connection.
+2. DotBlocks’ parser dynamically generates clean, human-readable pseudo code.
+3. When the user compiles the psuedo code is fed through an AI api to convert into smart contract code under specific requirements.
+4. Code is automatically compiled via `cargo-contract` and ready for deployment.
+5. Users can sign transactions and deploy directly through the DotBlocks interface using the Polkadot-JS wallet connection.
 
 ## 🧪 Example: EasyACoin Smart Contract
 
