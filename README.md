@@ -88,9 +88,6 @@ This contract, along with others like conditional transfers and basic event trig
 ### Visual Block Editor
 ![image](https://github.com/user-attachments/assets/1a68ca46-f2cb-436a-ace3-386473223257)
 
-### Exported Smart Contract Code
-![Code Screenshot](#)
-
 ### Deployment to Polkadot Asset Hub
 You can verify your contract on Moonscan: https://moonbase.moonscan.io/address/0x6E72291CbdC9B1D8A8581eDA27Bc473fc5B9c9Be
 
