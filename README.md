@@ -1,13 +1,7 @@
-Of course! Here's your **updated README**, integrating **your original** text + **the roadmap** + **the market opportunity** you mentioned, just formatted very cleanly so it matches a professional hackathon project style:
-
----
-
 # DotBlocks
 
 ## Quick Summary
 DotBlocks: Build Polkadot smart contracts visually — no coding required.
-
----
 
 ## 🚀 Full Project Description
 
@@ -17,13 +11,9 @@ This project solves that barrier by offering a visual, block-based smart contrac
 
 The importance of this project lies in democratizing access to decentralized technologies. As Web3 continues to grow—with billions of dollars moving into decentralized finance (DeFi), gaming, and real-world assets (RWA) on-chain—there is a massive demand for tools that lower the barrier for builders. Making smart contract development easier will lead to more innovation, broader adoption, and a more inclusive ecosystem, especially on scalable networks like Polkadot.
 
----
-
 ## 📈 Market Opportunity
 
 The no-code/low-code blockchain platform market is expected to become a multi-billion dollar industry as enterprises, creators, and new developers look for faster, cheaper, and safer ways to build decentralized apps. With over **135 million users on Scratch** itself, this project captures a technically advanced but still underserved segment of that growing market, helping new users tap into Polkadot’s interoperability, parachain security, and decentralized validation.
-
----
 
 ## 🛠️ Technical Description
 
@@ -44,8 +34,6 @@ Smart contracts generated through the platform are compiled and deployed using `
 - **Interoperability:** Contracts can later interact across parachains for enhanced composability.
 - **Low Gas Fees:** Extremely low transaction fees compared to EVM chains, making experimentation affordable.
 
----
-
 ## 🧪 Example: EasyACoin Smart Contract
 
 While there is no single "official" smart contract built solely for this project, during development, we used DotBlocks to create and deploy several custom contracts. One example is **EasyACoin**, a simple mintable token contract:
@@ -56,20 +44,14 @@ While there is no single "official" smart contract built solely for this project
 
 This contract, along with others like conditional transfers and basic event triggers, demonstrates that the platform can generate fully functional, **non-boilerplate** smart contracts ready for production deployment.
 
----
-
 ## 📂 Repository Structure
 
 - `frontend/` — Visual block editor built with Blockly.js
 - `contracts/` — Sample smart contracts generated with DotBlocks
 - `deployment/` — Scripts and instructions for deploying to Asset Hub
 
----
-
 ## 🎥 Demo Video
 [Watch the demo here](#) *(Upload Loom, YouTube, or GitHub Video link)*
-
----
 
 ## 🖼️ Screenshots
 
@@ -82,15 +64,11 @@ This contract, along with others like conditional transfers and basic event trig
 ### Deployment to Polkadot Asset Hub
 You can verify your contract on Moonscan: https://moonbase.moonscan.io/address/0x6E72291CbdC9B1D8A8581eDA27Bc473fc5B9c9Be
 
----
-
 ## 🎤 Presentation
 
 - [Presentation Video](#) *(Link to video where you explain the project)*
 - [Canva Slides](#) *(Link to your Canva presentation slides)*
-
----
-
+  
 ## 🔮 Future Roadmap
 
 - Expand block palette: add loops, custom functions, oracle integrations
@@ -99,8 +77,6 @@ You can verify your contract on Moonscan: https://moonbase.moonscan.io/address/0
 - Deployment Enhancements: easier testnet/mainnet switching for Asset Hub
 - Interactive Tutorials: add mission-based beginner walkthroughs
 - DID/Identity Blocks: extend to decentralized identity (DID) features
-
----
 
 # ✅ Submission Requirements Checklist
 
