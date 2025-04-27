@@ -108,9 +108,8 @@ You can verify your contract on Moonscan: https://moonbase.moonscan.io/address/0
 # ✅ Submission Requirements Checklist
 
 - [x] Built with smart contracts on Polkadot Asset Hub
-- [x] Open-source (MIT licensed)
+- [x] Open-source
 - [x] Custom non-boilerplate smart contracts deployed
 - [x] Clear README explaining project, demo, contract details
-- [ ] Demo video (pending)
-- [ ] Screenshots (pending)
-- [ ] Loom video walkthrough (pending)
+- [x] Demo video
+- [x] Screenshots
