@@ -81,7 +81,7 @@ This contract, along with others like conditional transfers and basic event trig
 - `deployment/` — Scripts and instructions for deploying to Asset Hub
 
 ## 🎥 Demo Video
-[Watch the demo here](#) *(Upload Loom, YouTube, or GitHub Video link)*
+[Watch the demo here]((https://youtu.be/e_C6CgF9gcg))
 
 ## 🖼️ Screenshots
 
@@ -93,8 +93,7 @@ You can verify your contract on Moonscan: https://moonbase.moonscan.io/address/0
 
 ## 🎤 Presentation
 
-- [Presentation Video](#) ([Link to video where you explain the project](https://youtu.be/e_C6CgF9gcg))
-- [Canva Slides](#) [*(Link to your Canva presentation slides)*](https://www.canva.com/design/DAGl1Luz10w/NHlIED-6P4g44mCRlnXzhw/edit?utm_content=DAGl1Luz10w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+- [Canva Slides](https://www.canva.com/design/DAGl1Luz10w/NHlIED-6P4g44mCRlnXzhw/edit?utm_content=DAGl1Luz10w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
   
 ## 🔮 Future Roadmap
 
