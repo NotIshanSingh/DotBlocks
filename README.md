@@ -93,7 +93,7 @@ You can verify your contract on Moonscan: https://moonbase.moonscan.io/address/0
 
 ## 🎤 Presentation
 
-- [Presentation Video](#) *(Link to video where you explain the project)*
+- [Presentation Video](#) ([Link to video where you explain the project](https://youtu.be/e_C6CgF9gcg))
 - [Canva Slides](#) *(Link to your Canva presentation slides)*
   
 ## 🔮 Future Roadmap
