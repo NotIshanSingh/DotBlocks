@@ -81,7 +81,7 @@ This contract, along with others like conditional transfers and basic event trig
 - `deployment/` — Scripts and instructions for deploying to Asset Hub
 
 ## 🎥 Demo Video
-[Watch the demo here]((https://youtu.be/e_C6CgF9gcg))
+[Watch the demo here](https://youtu.be/e_C6CgF9gcg)
 
 ## 🖼️ Screenshots
 
