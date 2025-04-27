@@ -1,11 +1,6 @@
 ## Quick Summary
 DotBlocks: Build Polkadot smart contracts visually — no coding required.
 
-# DotBlocks
-
-## Quick Summary
-DotBlocks: Build Polkadot smart contracts visually — no coding required.
-
 # 🚀 Full Project Description
 
 **DotBlocks** is a revolutionary step forward in making smart contract development accessible to everyone — not just seasoned developers.
